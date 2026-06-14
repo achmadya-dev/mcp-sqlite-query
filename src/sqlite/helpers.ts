@@ -1,4 +1,4 @@
-import { ToolError } from "../server.js";
+import { ToolError } from "@achmadya-dev/mcp-core";
 
 /**
  * Validate and clean up input SQL query and allowed prefixes.
@@ -71,12 +71,7 @@ export function parseSingleStatement(sql: string): string {
       continue;
     }
 
-    if (
-      !inSingleQuote &&
-      !inDoubleQuote &&
-      !inBacktick &&
-      !inBracketIdentifier
-    ) {
+    if (!inSingleQuote && !inDoubleQuote && !inBacktick && !inBracketIdentifier) {
       if (char === "-" && next === "-") {
         current += char + next;
         i++;
@@ -92,12 +87,7 @@ export function parseSingleStatement(sql: string): string {
       }
     }
 
-    if (
-      char === "'" &&
-      !inDoubleQuote &&
-      !inBacktick &&
-      !inBracketIdentifier
-    ) {
+    if (char === "'" && !inDoubleQuote && !inBacktick && !inBracketIdentifier) {
       if (inSingleQuote && next === "'") {
         current += "''";
         i++;
@@ -108,12 +98,7 @@ export function parseSingleStatement(sql: string): string {
       continue;
     }
 
-    if (
-      char === '"' &&
-      !inSingleQuote &&
-      !inBacktick &&
-      !inBracketIdentifier
-    ) {
+    if (char === '"' && !inSingleQuote && !inBacktick && !inBracketIdentifier) {
       if (inDoubleQuote && next === '"') {
         current += '""';
         i++;
@@ -124,23 +109,13 @@ export function parseSingleStatement(sql: string): string {
       continue;
     }
 
-    if (
-      char === "`" &&
-      !inSingleQuote &&
-      !inDoubleQuote &&
-      !inBracketIdentifier
-    ) {
+    if (char === "`" && !inSingleQuote && !inDoubleQuote && !inBracketIdentifier) {
       inBacktick = !inBacktick;
       current += char;
       continue;
     }
 
-    if (
-      char === "[" &&
-      !inSingleQuote &&
-      !inDoubleQuote &&
-      !inBacktick
-    ) {
+    if (char === "[" && !inSingleQuote && !inDoubleQuote && !inBacktick) {
       inBracketIdentifier = true;
       current += char;
       continue;
@@ -152,13 +127,7 @@ export function parseSingleStatement(sql: string): string {
       continue;
     }
 
-    if (
-      char === ";" &&
-      !inSingleQuote &&
-      !inDoubleQuote &&
-      !inBacktick &&
-      !inBracketIdentifier
-    ) {
+    if (char === ";" && !inSingleQuote && !inDoubleQuote && !inBacktick && !inBracketIdentifier) {
       const trimmed = current.trim();
       if (trimmed.length > 0) {
         parts.push(trimmed);

@@ -1,13 +1,8 @@
-import * as z from "zod/v4";
+import { z } from "zod";
 
-const rowValue = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.null(),
-]);
+const rowValue = z.union([z.string(), z.number(), z.boolean(), z.null()]);
 
-export const sqliteQueryInputSchema = {
+export const sqliteQueryInputSchema = z.object({
   sql: z
     .string()
     .check(
@@ -15,12 +10,10 @@ export const sqliteQueryInputSchema = {
       z.minLength(1, "SQL cannot be empty"),
       z.maxLength(100_000, "SQL is too long (max 100,000 characters)")
     )
-    .describe(
-      "A single SQL statement. Multiple statements separated by ';' are not allowed."
-    ),
-} as const;
+    .describe("A single SQL statement. Multiple statements separated by ';' are not allowed."),
+});
 
-export const sqliteQueryOutputShape = {
+export const sqliteQueryOutputShape = z.object({
   kind: z.enum(["resultset", "execute"]),
   columns: z.array(z.string()).optional(),
   rowCount: z.number().int().nonnegative().optional(),
@@ -30,7 +23,7 @@ export const sqliteQueryOutputShape = {
   rows: z.array(z.record(z.string(), rowValue)).optional(),
   affectedRows: z.number().int().nonnegative().optional(),
   insertId: z.string().nullable().optional(),
-} as const;
+});
 
 export const sqliteQueryResultSchema = z.discriminatedUnion("kind", [
   z.object({
@@ -48,3 +41,5 @@ export const sqliteQueryResultSchema = z.discriminatedUnion("kind", [
     insertId: z.string().nullable(),
   }),
 ]);
+
+export type SqliteQueryResult = z.infer<typeof sqliteQueryResultSchema>;

@@ -1,10 +1,16 @@
-import { DatabaseSync, StatementSync } from "node:sqlite";
-import { ToolError } from "../server.js";
+import { DatabaseSync, type StatementSync } from "node:sqlite";
+import { ToolError } from "@achmadya-dev/mcp-core";
 import config from "./config.js";
 import * as helpers from "./helpers.js";
 
 interface StatementSyncWithColumns extends StatementSync {
-  columns(): Array<{ name: string; column: string | null; table: string | null; database: string | null; type: string | null }>;
+  columns(): Array<{
+    name: string;
+    column: string | null;
+    table: string | null;
+    database: string | null;
+    type: string | null;
+  }>;
 }
 
 export function safeQuery(sql: string, allowedPrefixes: string[]): string {
@@ -66,9 +72,7 @@ export async function runSql(sql: string): Promise<
       insertId,
     };
   } catch (e) {
-    throw new ToolError(
-      `SQLite: ${e instanceof Error ? e.message : String(e)}`
-    );
+    throw new ToolError(`SQLite: ${e instanceof Error ? e.message : String(e)}`);
   } finally {
     if (db) {
       try {

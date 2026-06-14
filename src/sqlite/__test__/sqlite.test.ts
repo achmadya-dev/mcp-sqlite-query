@@ -13,9 +13,7 @@ describe("safeQuery", () => {
   });
 
   it("rejects queries with non-matching prefixes", () => {
-    expect(() => safeQuery("INSERT INTO users", ["SELECT"])).toThrow(
-      /SQL query is not allowed/
-    );
+    expect(() => safeQuery("INSERT INTO users", ["SELECT"])).toThrow(/SQL query is not allowed/);
   });
 
   it("allows a trailing semicolon on a single query", () => {
