@@ -30,35 +30,30 @@ Or use `envFile` instead of inline `env`.
 ## Develop from source
 
 ```bash
-cp .env.example .env
+git clone https://github.com/achmadya-dev/mcp-sqlite-query.git
+cd mcp-sqlite-query
 pnpm install
-docker compose up -d sqlite
-pnpm --filter @achmadya-dev/mcp-sqlite-query run build
+pnpm run build
+pnpm test
 ```
 
-Docker creates `docker/sqlite/data/dev.db` from `docker/sqlite/init.sql` (sample e-commerce schema).
-
-`.cursor/mcp.json`:
+Open the repo root in Cursor and point at a database file (or `:memory:`):
 
 ```json
 {
   "mcpServers": {
     "sqlite": {
       "command": "node",
-      "args": ["${workspaceFolder}/packages/mcp-sqlite-query/dist/index.js"],
-      "envFile": "${workspaceFolder}/.env"
+      "args": ["${workspaceFolder}/dist/index.js"],
+      "env": {
+        "SQLITE_DB_PATH": "/absolute/path/to/database.db"
+      }
     }
   }
 }
 ```
 
-Relevant `.env` key:
-
-```env
-SQLITE_DB_PATH=docker/sqlite/data/dev.db
-```
-
-Path is relative to the workspace root when Cursor starts the server.
+Or use `envFile` pointing at a `.env` in the repo root. Paths are resolved relative to the workspace folder when Cursor starts the server.
 
 ## Environment variables
 
