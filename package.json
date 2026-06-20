@@ -1,6 +1,6 @@
 {
   "name": "@achmadya-dev/mcp-sqlite-query",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Model Context Protocol (MCP) server for SQLite to run SQL queries via stdio (read-only by default)",
   "type": "module",
   "author": "achmadya",
@@ -40,7 +40,7 @@
     "node": ">=22.5.0"
   },
   "dependencies": {
-    "@achmadya-dev/mcp-core": "^0.3.3",
+    "@achmadya-dev/mcp-core": "^0.5.0",
     "zod": "4.3.6"
   },
   "devDependencies": {

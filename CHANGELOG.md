@@ -1,5 +1,11 @@
 # @achmadya-dev/mcp-sqlite-query
 
+## 0.2.1
+
+### Patch Changes
+
+- Migrate to mcp-core 0.5.0: replace `startMcpServer` with `runMcp`.
+
 ## 0.2.0
 
 ### Minor Changes
