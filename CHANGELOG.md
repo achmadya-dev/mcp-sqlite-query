@@ -1,5 +1,11 @@
 # @achmadya-dev/mcp-sqlite-query
 
+## 0.3.2
+
+### Patch Changes
+
+- f6fad62: Bump `@achmadya-dev/mcp-core` to ^0.8.0.
+
 ## 0.3.1
 
 ### Patch Changes
