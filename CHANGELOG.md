@@ -1,5 +1,11 @@
 # @achmadya-dev/mcp-sqlite-query
 
+## 0.3.0
+
+### Minor Changes
+
+- a2b8ba7: Check SQLite database connection at startup and disable tools when the database is unreachable.
+
 ## 0.2.2
 
 ### Patch Changes
