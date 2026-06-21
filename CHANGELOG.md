@@ -1,5 +1,11 @@
 # @achmadya-dev/mcp-sqlite-query
 
+## 0.2.2
+
+### Patch Changes
+
+- 818f69e: Bump @achmadya-dev/mcp-core to ^0.6.0 for tool result helpers and simplified registration API.
+
 ## 0.2.1
 
 ### Patch Changes
