@@ -1,6 +1,7 @@
 import { DatabaseSync, type StatementSync } from "node:sqlite";
 import { ToolError } from "@achmadya-dev/mcp-core";
 import config from "./config.js";
+import { formatConnectionError } from "../connection-status.js";
 import * as helpers from "./helpers.js";
 
 interface StatementSyncWithColumns extends StatementSync {
@@ -26,7 +27,7 @@ export async function checkConnection(): Promise<void> {
     db = new DatabaseSync(config.dbPath);
     db.prepare("SELECT 1").get();
   } catch (e) {
-    throw new Error(`SQLite: ${e instanceof Error ? e.message : String(e)}`);
+    throw new Error(formatConnectionError("SQLite", e));
   } finally {
     if (db) {
       try {
