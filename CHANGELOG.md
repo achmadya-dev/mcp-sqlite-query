@@ -1,5 +1,11 @@
 # @achmadya-dev/mcp-sqlite-query
 
+## 0.3.1
+
+### Patch Changes
+
+- 65530a5: Register a connection_status tool when startup health check fails, with clearer driver error messages.
+
 ## 0.3.0
 
 ### Minor Changes
