@@ -20,6 +20,24 @@ export function safeQuery(sql: string, allowedPrefixes: string[]): string {
   return statement;
 }
 
+export async function checkConnection(): Promise<void> {
+  let db: DatabaseSync | null = null;
+  try {
+    db = new DatabaseSync(config.dbPath);
+    db.prepare("SELECT 1").get();
+  } catch (e) {
+    throw new Error(`SQLite: ${e instanceof Error ? e.message : String(e)}`);
+  } finally {
+    if (db) {
+      try {
+        db.close();
+      } catch {
+        // Ignore close errors
+      }
+    }
+  }
+}
+
 export async function runSql(sql: string): Promise<
   | {
       kind: "resultset";

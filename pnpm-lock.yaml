@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@achmadya-dev/mcp-core':
-        specifier: ^0.6.0
-        version: 0.6.0(express@5.2.1)(hono@4.12.26)
+        specifier: ^0.7.0
+        version: 0.7.0(express@5.2.1)(hono@4.12.26)
       zod:
         specifier: 4.3.6
         version: 4.3.6
@@ -42,8 +42,8 @@ importers:
 
 packages:
 
-  '@achmadya-dev/mcp-core@0.6.0':
-    resolution: {integrity: sha512-r/RrvzyKlifLuhi0+ZAHG3UpmKakAhW/QxizA3fWcrNqtcuh2nrr64/U2nKwFLD6/iam5YSCrmKh60a7h36lbw==}
+  '@achmadya-dev/mcp-core@0.7.0':
+    resolution: {integrity: sha512-UAGCL3o6zEScpbT58NbpRRQqHVvzubfBXb2yQK+b0VhLC0qh4iMMvQNtyYaiLDjJWBfcTOkNtBwudWCI5dkhhA==}
     engines: {node: '>=20'}
     peerDependencies:
       '@modelcontextprotocol/ext-apps': ^1.7.0
@@ -1932,7 +1932,7 @@ packages:
 
 snapshots:
 
-  '@achmadya-dev/mcp-core@0.6.0(express@5.2.1)(hono@4.12.26)':
+  '@achmadya-dev/mcp-core@0.7.0(express@5.2.1)(hono@4.12.26)':
     dependencies:
       '@cfworker/json-schema': 4.1.1
       '@modelcontextprotocol/express': 2.0.0-alpha.2(@modelcontextprotocol/server@2.0.0-alpha.2(@cfworker/json-schema@4.1.1))(express@5.2.1)

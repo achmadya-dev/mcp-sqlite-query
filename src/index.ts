@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { runMcp } from "@achmadya-dev/mcp-core";
 import packageJson from "../package.json" with { type: "json" };
+import { checkConnection } from "./sqlite/sqlite.js";
 import { sqlite_ddl } from "./tools/sqlite_ddl.js";
 import { sqlite_delete } from "./tools/sqlite_delete.js";
 import { sqlite_insert } from "./tools/sqlite_insert.js";
@@ -12,4 +13,5 @@ await runMcp({
   version: packageJson.version,
   transport: "stdio",
   tools: [sqlite_select, sqlite_insert, sqlite_update, sqlite_delete, sqlite_ddl],
+  healthCheck: checkConnection,
 });
